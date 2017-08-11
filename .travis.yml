@@ -9,6 +9,7 @@ jobs:
       script:
       - go build
 deploy:
+  provider: script
   script:
   - docker build -t builder -f Dockerfile.build . && docker run builder | docker build -t bxy09/es-gc:$TRAVIS_TAG -
   - mkdir -p ~/.docker
