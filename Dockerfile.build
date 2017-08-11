@@ -1,0 +1,6 @@
+FROM golang:alpine
+ADD . /go/src/github.com/bxy09/es-gc
+ADD Dockerfile.run /go/product/Dockerfile
+RUN cd /go/product && go build github.com/bxy09/es-gc
+WORKDIR /go/product
+CMD tar -cf - .

@@ -1,0 +1,20 @@
+---
+language: go
+services:
+  - docker
+jobs:
+  fast_finish: true
+  include:
+    - stage: build
+      script:
+      - go build
+    - stage: docker
+      script:
+      - docker build -t builder -f Dockerfile.build . && docker run builder | docker build -t bxy09/es-gc -
+      after_script:
+      - docker rmi -f builder
+    - stage: push
+      script:
+      - mkdir -p ~/.docker
+      - 'echo "{\"auths\":{\"https://index.docker.io/v1/\": {\"auth\": \"$DOCKER_HUB_AUTH\"}}}" > ~/.docker/config.json'
+      - docker push bxy09/es-gc

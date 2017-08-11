@@ -1,0 +1,3 @@
+FROM alpine:latest
+COPY . /go/bin/
+CMD ["/go/bin/es-gc"]
