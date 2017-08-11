@@ -17,4 +17,4 @@ jobs:
       after_script:
       - docker rmi -f builder
       on:
-        tag: true
+        tags: true
