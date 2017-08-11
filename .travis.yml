@@ -10,5 +10,5 @@ jobs:
       - go build
     - stage: docker
       script:
-      - '[[ $TRAVIS_TAG != "" ]] && bash .travis.docker.sh'
+      - '[[ $TRAVIS_TAG != "" ]] && bash .travis.docker.sh || echo "passed"'
 
